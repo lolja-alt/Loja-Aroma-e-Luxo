@@ -119,4 +119,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('itens-carrinho')) {
         renderizarCarrinho();
     }
-});
+}); 
+// No seu carrinho.js (ou onde você tem o botão de finalizar)
+async function finalizarPedido() {
+  const codigo = "PED-" + Math.floor(100000 + Math.random() * 900000); // código aleatório
+
+  const pedido = {
+    codigo: codigo,
+    cliente: "Cliente Temporário", // depois você pega do login ou formulário
+    itens: carrinho,               // array dos produtos
+    total: calcularTotal(),
+    status: "pendente",
+    data: new Date().toISOString()
+  };
+
+  alert(`✅ Pedido registrado!\n\nCÓDIGO: ${codigo}\nGuarde esse código para rastrear!`);
+
+  // Salva localmente só para o cliente ver
+  localStorage.setItem('ultimoPedido', JSON.stringify(pedido));
+
+  // Limpa o carrinho
+  carrinho = [];
+  renderCarrinho();
+}
