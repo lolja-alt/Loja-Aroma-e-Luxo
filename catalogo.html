@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loja de Perfumes - Aroma e Luxo</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      margin: 0 0 10px 0;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      font-size: 1.4rem;
+      margin: 0;
+      opacity: 0.95;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background: #333;
+    }
+
+    nav a {
+      padding: 14px 20px;
+      color: white;
+      text-decoration: none;
+      margin: 2px;
+    }
+
+    nav a:hover {
+      background: #ddd;
+      color: black;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 0 auto;
+    }
+
+    .product {
+      flex: 0 1 300px;
+      max-width: 320px;
+      min-width: 240px;
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-radius: 8px;
+    }
+
+    .product img {
+      width: 100%;
+      height: auto;
+      max-height: 260px;          /* Limite importante para não ficar gigante */
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .product .codigo {
+      font-size: 13px;
+      color: #777;
+    }
+
+    .product p {
+      color: #4CAF50;
+      font-size: 18px;
+      margin: 8px 0;
+    }
+
+    .product h3 {
+      font-size: 1.4rem;
+      margin: 10px 0;
+      color: #333;
+    }
+
+    .add-to-cart {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .add-to-cart:hover {
+      background: #45a049;
+    }
+
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+    }
+
+    /* SEPARADOR DAS CATEGORIAS */
+    .category-section {
+      margin: 60px 0;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .category-title {
+      text-align: center;
+      color: #4CAF50;
+      font-size: 2.2rem;
+      margin: 0 0 30px 0;
+      padding-bottom: 15px;
+      border-bottom: 3px solid #4CAF50;
+      position: relative;
+    }
+
+    .category-title::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: #4CAF50;
+      margin: 10px auto 0;
+      border-radius: 2px;
+    }
+
+    /* Títulos do catálogo */
+    #catalogo h2 {
+      font-size: 3rem;
+      color: #4CAF50;
+      text-align: center;
+      margin: 0 0 15px 0;
+    }
+
+    #catalogo p.intro {
+      font-size: 1.5rem;
+      text-align: center;
+      color: #555;
+      margin-bottom: 50px;
+      font-style: italic;
+    }
+
+    /* Responsividade */
+    @media (min-width: 1100px) {
+      .product {
+        flex: 0 1 calc(33.333% - 40px / 3); /* 3 por linha */
+      }
+    }
+
+    @media (max-width: 1099px) and (min-width: 700px) {
+      .product {
+        flex: 0 1 calc(50% - 20px); /* 2 por linha */
+      }
+    }
+
+    @media (max-width: 699px) {
+      .product {
+        flex: 0 1 100%; /* 1 por linha */
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+
+<header id="index">
+  <div class="cart-icon-fixed" onclick="window.location.href='carrinho.html'">
+    🛒
+    <span id="cartCount" class="cart-count">0</span>
+</div>
+  <h1>Loja Aroma e Luxo</h1>
+  <p>Encontre as melhores fragrâncias para todos os gostos!</p>
+</header>
+
+<nav>
+  <a href="index.html">Início</a>
+  <a href="catalogo.html">Catálogo</a>
+  <a href="sobrenos.html">Sobre Nós</a>
+  <a href="contato.html">Contato</a>
+  <a href="promoções.html">Promoções</a>
+  <a href="maisvendidos.html">Mais Vendidos</a>
+  <a href="cadstrodeclientes.html">Cadastro</a>
+  <a href="carrinho.html">Carrinho</a>
+</nav>
+<!-- CATÁLOGO -->
+<section id="catalogo" class="container">
+  <h2>Catálogo de Perfumes</h2>
+  <p class="intro">Explore nossas fragrâncias por família olfativa</p>
+
+  <!-- CATEGORIA FLORAL -->
+  <div class="category-section">
+    <h3 class="category-title">Perfumes Floral Elegante</h3>
+    <div class="products">
+      <div class="product">
+        <img src="https://thumbs.dreamstime.com/b/pink-elegant-perfume-bottle-rose-fragrance-high-quality-photo-pink-elegant-perfume-bottle-rose-fragrance-352983944.jpg" alt="Eternal Rose Elegance">
+        <h3>Eternal Rose Elegance</h3>
+        <p class="codigo">Código: 7392841</p>
+        <p>Base de rosa eterna e pétalas de violeta</p>
+        <p>R$ 295,00</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome="Eternal Rose Elegance"
+        data-preco="295.00">
+  Adicionar
+</button>
+      </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1587017539507-54bce8e0e9d9" alt="Velvet Rose Whisper">
+        <h3>Velvet Rose Whisper</h3>
+        <p class="codigo">Código: 5193742</p>
+        <p>Base de rosa damascena e jasmim</p>
+        <p>R$ 285,00</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome="Velvet Rose Whispers"
+        data-preco="295.00">
+  Adicionar
+</button>
+      </div>
+      <div class="product">
+        <img src="https://i.ibb.co/dwz0tDbN/Perfume-Floral-Elegante.jpg" alt="Whispers of Peony">
+        <h3>Whispers of Peony</h3>
+        <p class="codigo">Código: 48515643</p>
+        <p>Base de rosas brancas</p>
+        <p>R$ 250,00</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome="Whispers of Peony"
+        data-preco="295.00">
+  Adicionar
+</button>
+      </div>
+      <div class="product">
+        <img src="https://i.ibb.co/qYSGcbYR/bd81656c-a28a-4020-967a-8d9fe863d1f7.jpg" alt="Orange Blossom Breeze">
+        <h3>Orange Blossom Breeze</h3>
+        <p class="codigo">Código: 46284</p>
+        <p>Base de laranjas silvestres</p>
+        <p>R$ 220,00</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome=""
+        data-preco="295.00">
+  Adicionar
+</button>
+      </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de" alt="Jasmine Moonlight">
+        <h3>Jasmine Moonlight</h3>
+        <p class="codigo">Código: 6738291</p>
+        <p>Base de jasmim noturno e lírio</p>
+        <p>R$ 265,90</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome="Eternal Rose Elegance"
+        data-preco="295.00">
+  Adicionar
+</button>
+      </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1590737097849-5d1481a5aa10" alt="Peony Serenade">
+        <h3>Peony Serenade</h3>
+        <p class="codigo">Código: 3928471</p>
+        <p>Base de peônia e gardênia</p>
+        <p>R$ 238,00</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome="Eternal Rose Elegance"
+        data-preco="295.00">
+  Adicionar
+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORIA CÍTRICOS -->
+  <div class="category-section">
+    <h3 class="category-title">Perfumes Cítricos</h3>
+    <div class="products">
+      <div class="product">
+        <img src="https://thumbs.dreamstime.com/b/perfume-bottle-water-splash-oranges-green-leaves-elegant-fragrance-product-ad-beautiful-luxury-scented-surrounded-408133512.jpg" alt="Mandarin Sparkle">
+        <h3>Mandarin Sparkle</h3>
+        <p class="codigo">Código: 5829173</p>
+        <p>Base de tangerina fresca e limão tahiti</p>
+        <p>R$ 268,00</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome="Eternal Rose Elegance"
+        data-preco="295.00">
+  Adicionar
+</button>
+      </div>
+      <div class="product">
+        <img src="https://thumbs.dreamstime.com/b/perfume-bottle-stands-water-oranges-green-leafs-luxury-fragrance-concept-fresh-citrus-notes-scent-ad-campaign-perfume-409438614.jpg" alt="Yuzu Fresh Wave">
+        <h3>Yuzu Fresh Wave</h3>
+        <p class="codigo">Código: 5647382</p>
+        <p>Base de yuzu e lima</p>
+        <p>R$ 259,90</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome="Eternal Rose Elegance"
+        data-preco="295.00">
+  Adicionar
+</button>
+      </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de" alt="Citrus Royale">
+        <h3>Citrus Royale</h3>
+        <p class="codigo">Código: 476154</p>
+        <p>Base de limão</p>
+        <p>R$ 260,00</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome="Eternal Rose Elegance"
+        data-preco="295.00">
+  Adicionar
+</button>
+      </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1585386959984-a41552231658" alt="Neroli Portofino">
+        <h3>Neroli Portofino</h3>
+        <p class="codigo">Código: 15354486</p>
+        <p>Limão, bergamota e neroli</p>
+        <p>R$ 288,00</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome="Eternal Rose Elegance"
+        data-preco="295.00">
+  Adicionar
+</button>
+      </div>
+      <div class="product">
+        <img src="https://thumbs.dreamstime.com/b/fresh-citrus-perfume-bottle-sunlight-fruit-arranged-creating-vibrant-setting-359227170.jpg" alt="Lemon Zest Burst">
+        <h3>Lemon Zest Burst</h3>
+        <p class="codigo">Código: 8472916</p>
+        <p>Base de limão siciliano e grapefruit</p>
+        <p>R$ 245,00</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome="Eternal Rose Elegance"
+        data-preco="295.00">
+  Adicionar
+</button>
+      </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1585386959984-a41552231658" alt="Bergamot Sunrise">
+        <h3>Bergamot Sunrise</h3>
+        <p class="codigo">Código: 1284937</p>
+        <p>Base de bergamota e mandarina</p>
+        <p>R$ 272,50</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome="Eternal Rose Elegance"
+        data-preco="295.00">
+  Adicionar
+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORIA AMADEIRADOS -->
+  <div class="category-section">
+    <h3 class="category-title">Perfumes Amadeirados</h3>
+    <div class="products">
+      <div class="product">
+        <img src="https://fimgs.net/mdimg/perfume/social.109194.jpg" alt="Tobacco Wood Reserve">
+        <h3>Tobacco Wood Reserve</h3>
+        <p class="codigo">Código: 1946728</p>
+        <p>Base de tabaco amadeirado e baunilha seca</p>
+        <p>R$ 385,00</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome="Eternal Rose Elegance"
+        data-preco="295.00">
+  Adicionar
+</button>
+</div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539" alt="1 Million">
+        <h3>1 Million</h3>
+        <p class="codigo">Código: 2514</p>
+        <p>Madeira, canela e couro</p>
+        <p>R$ 378,00</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome="Eternal Rose Elegance"
+        data-preco="295.00">
+  Adicionar
+</button>
+      </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539" alt="Pétale d'Or">
+        <h3>Pétale d'Or</h3>
+        <p class="codigo">Código: 824657</p>
+        <p>Madeira, canela e couro</p>
+        <p>R$ 350,39</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome="Eternal Rose Elegance"
+        data-preco="295.00">
+  Adicionar
+</button>
+      </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539" alt="Cedar Shadow">
+        <h3>Cedar Shadow</h3>
+        <p class="codigo">Código: 9182736</p>
+        <p>Base de cedro e sândalo</p>
+        <p>R$ 395,00</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome="Eternal Rose Elegance"
+        data-preco="295.00">
+  Adicionar
+</button>
+      </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1608248543803-3ee80c2a0c4f" alt="Oak Ember">
+        <h3>Oak Ember</h3>
+        <p class="codigo">Código: 3051947</p>
+        <p>Base de carvalho e vetiver</p>
+        <p>R$ 362,00</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome="Eternal Rose Elegance"
+        data-preco="295.00">
+  Adicionar
+</button>
+      </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f" alt="Sandalwood Legacy">
+        <h3>Sandalwood Legacy</h3>
+        <p class="codigo">Código: 7491028</p>
+        <p>Base de sândalo cremoso e patchouli</p>
+        <p>R$ 418,90</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome="Eternal Rose Elegance"
+        data-preco="295.00">
+  Adicionar
+</button>
+    </div>
+  </div>
+
+  <!-- CATEGORIA INFANTIL -->
+  <div class="category-section">
+    <h3 class="category-title">Perfumes Infantis</h3>
+    <div class="products">
+      <div class="product">
+        <img src="https://m.media-amazon.com/images/I/71biE8GHLpL.jpg_BO30,255,255,255_UF750,750_SR1910,1000,0,C_QL100_.jpg" alt="Candy Cloud Magic">
+        <h3>Candy Cloud Magic</h3>
+        <p class="codigo">Código: 3174926</p>
+        <p>Base de algodão doce e baunilha leve</p>
+        <p>R$ 210,00</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome="Eternal Rose Elegance"
+        data-preco="295.00">
+  Adicionar
+</button>
+      </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1611078489935-0cb964de46d6" alt="Fantasy">
+        <h3>Fantasy</h3>
+        <p class="codigo">Código: 4527</p>
+        <p>Chocolate branco e frutas</p>
+        <p>R$ 265,80</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome="Eternal Rose Elegance"
+        data-preco="295.00">
+  Adicionar
+</button>
+      </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f" alt="Amber Incense Fury">
+        <h3>Amber Incense Fury</h3>
+        <p class="codigo">Código: 45632</p>
+        <p>Perfume masculino intenso</p>
+        <p>R$ 280,00</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome="Eternal Rose Elegance"
+        data-preco="295.00">
+  Adicionar
+</button>
+      </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1611078489935-0cb964de46d6" alt="Sweet Cotton Dream">
+        <h3>Sweet Cotton Dream</h3>
+        <p class="codigo">Código: 6872041</p>
+        <p>Base de algodão doce e baunilha suave</p>
+        <p>R$ 198,00</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome="Eternal Rose Elegance"
+        data-preco="295.00">
+  Adicionar
+</button>
+      </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f" alt="Bubble Gum Breeze">
+        <h3>Bubble Gum Breeze</h3>
+        <p class="codigo">Código: 2314567</p>
+        <p>Base de chiclete e morango leve</p>
+        <p>R$ 215,50</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome="Eternal Rose Elegance"
+        data-preco="295.00">
+  Adicionar
+</button>
+      </div>
+      <div class="product">
+        <img src="https://images.unsplash.com/photo-1611078489935-0cb964de46d6" alt="Fresh Apple Kiss">
+        <h3>Fresh Apple Kiss</h3>
+        <p class="codigo">Código: 8945123</p>
+        <p>Base de maçã fresca e flores suaves</p>
+        <p>R$ 189,90</p>
+        <button class="add-to-cart"
+        data-codigo="7392841"
+        data-nome="Eternal Rose Elegance"
+        data-preco="295.00">
+  Adicionar
+</button>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="js/carrinho.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.add-to-cart').forEach(function(botao) {
+      botao.addEventListener('click', function() {
+        const codigo = this.getAttribute('data-codigo');
+        const nome   = this.getAttribute('data-nome');
+        const preco  = parseFloat(this.getAttribute('data-preco'));
+
+        if (codigo && nome && !isNaN(preco)) {
+          adicionarAoCarrinho(codigo, nome, preco);
+          // Feedback opcional
+          this.textContent = 'Adicionado ✓';
+          setTimeout(() => { this.textContent = 'Adicionar'; }, 1500);
+        } else {
+          console.error('Dados incompletos no botão:', this);
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>

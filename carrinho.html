@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrinho - Aroma e Luxo</title>
+  <link rel="stylesheet" href="seu-estilo.css"> <!-- ou mantenha o style inline -->
+  <style>
+    /* Estilos específicos do carrinho */
+    .carrinho-container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .item-carrinho {
+        display: grid;
+        grid-template-columns: 3fr 1fr 1fr 1fr 80px;
+        gap: 15px;
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+        align-items: center;
+    }
+    
+    .item-info { font-weight: 500; }
+    .item-preco, .item-subtotal { text-align: right; }
+    
+    .controle-quantidade {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        justify-content: center;
+    }
+    
+    .btn-qty {
+        width: 36px;
+        height: 36px;
+        background: #f5f5f5;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 1.2rem;
+        cursor: pointer;
+    }
+    
+    .btn-remover {
+        background: #ff5252;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+    
+    .carrinho-vazio {
+        text-align: center;
+        padding: 60px 0;
+        font-size: 1.3rem;
+        color: #777;
+    }
+    
+    .resumo-carrinho {
+        margin-top: 30px;
+        text-align: right;
+        font-size: 1.4rem;
+    }
+    
+    .btn-finalizar {
+        background: #4CAF50;
+        color: white;
+        border: none;
+        padding: 14px 30px;
+        font-size: 1.2rem;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+
+<!-- Seu header + nav + ícone do carrinho aqui (copie das outras páginas) -->
+
+<div class="carrinho-container">
+    <h1>Seu Carrinho</h1>
+    
+    <div id="itens-carrinho"></div>
+    
+    <div class="resumo-carrinho">
+        <p>Total de itens: <strong><span id="quantidade-total">0</span></strong></p>
+        <p>Valor total: <strong id="total-carrinho">R$ 0,00</strong></p>
+        <button class="btn-finalizar" onclick="alert('Finalizando compra... (implementar pagamento)')">
+            Finalizar Compra
+        </button>
+        <button onclick="limparCarrinho()" style="margin-left:15px; background:#757575; color:white; padding:12px 20px; border:none; border-radius:6px; cursor:pointer;">
+            Limpar Carrinho
+        </button>
+    </div>
+</div>
+
+<nav>
+  <a href="index.html">Início</a>
+  <a href="catalogo.html">Catálogo</a>
+  <a href="sobrenos.html">Sobre Nós</a>
+  <a href="contato.html">Contato</a>
+  <a href="promoções.html">Promoções</a>
+  <a href="maisvendidos.html">Mais Vendidos</a>
+  <a href="cadstrodeclientes.html">Cadastro</a>
+  <a href="carrinho.html">Carrinho</a>
+</nav>
+<script src="js/carrinho.js"></script>
+</body>
+</html>
